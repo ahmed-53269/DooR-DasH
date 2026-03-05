@@ -90,7 +90,7 @@ public class DataLoader {
 		 
 	 }
 	 public static ArrayList<Monster> readMonsters() throws IOException {
-		 BufferedReader r = new BufferedReader(new FileReader(Cells_File_NAME));
+		 BufferedReader r = new BufferedReader(new FileReader(Monsters_File_NAME));
 		 ArrayList<Monster> arr = new ArrayList<>();
 
 		 String line;
@@ -129,4 +129,5 @@ public class DataLoader {
 	 }
 
 }
+
 
