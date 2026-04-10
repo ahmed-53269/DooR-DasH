@@ -1,7 +1,13 @@
 package game.engine.cells;
 
-public class ContaminationSock extends TransportCell{
-	 public ContaminationSock(String name, int effect) {
-		 super(name, effect < 0 ? effect : -1);
-	 }
+import game.engine.interfaces.CanisterModifier;
+
+public class ContaminationSock extends TransportCell implements CanisterModifier {
+
+	public ContaminationSock(String name, int effect) {
+		super(name, effect);
+	}
+	
+
 }
+

@@ -1,101 +1,95 @@
 package game.engine.monsters;
+
+import game.engine.Constants;
 import game.engine.Role;
 
-public abstract class Monster implements Comparable<Monster>{
+public abstract class Monster implements Comparable<Monster> {
 	private String name;
 	private String description;
 	private Role role;
-	private  Role originalRole;
+	private Role originalRole; // For confusion card
 	private int energy;
-	private int position; // 0 - 99
+	private int position;
 	private boolean frozen;
 	private boolean shielded;
 	private int confusionTurns;
-
-	public Monster(String name, String description, Role originalRole, int energy){
+	
+	public Monster(String name, String description, Role originalRole, int energy) {
+		super();
 		this.name = name;
 		this.description = description;
-		this.originalRole = originalRole;
 		this.role = originalRole;
-		if (energy >= 0) this.energy = energy;
-		else this.energy = 0;
-		this.position = this.confusionTurns = 0;
-		this.shielded = this.frozen = false;
+		this.originalRole = originalRole; 
+		this.energy = energy;
+		this.position = 0;
+		this.frozen = false;
+		this.shielded = false;
+		this.confusionTurns = 0;
 	}
-//Name
-public String getName(){
-	return name;}
-//description
-public String getDescription(){
-	return description;}
-//original role
-public Role getOriginalRole(){
-	return originalRole;}
-// role
-public Role getRole(){
-	return role;}
-public void setRole(Role r){
-	role = r;
-}
-//energy
-public int getEnergy(){
-	return energy;}
-public void setEnergy(int e) {
-		if (e >= 0)  energy = e;
-		else energy = 0;
 
-
+	public String getName() {
+		return name;
 	}
-//position
-public int getPosition(){
-	return position;
-}
 
-	public void setPosition(int p){
-
-		if (p >= 100){ p -= 100;}
-		position = p;
+	public String getDescription() {
+		return description;
 	}
-//freezing
-public boolean isFrozen(){
-	return frozen;
-}
-public void setFrozen(boolean f){
-	frozen = f;
-}
-//shielding
-public boolean isShielded(){
-	return shielded;
-}
-public void setShielded(boolean f){
-	shielded = f;
-}
-//confusing
-public int getConfusionTurns(){
-	return confusionTurns;
-}
-
-public void setConfusionTurns(int c){
-	confusionTurns = c;
-}
-//comparing
-public int compareTo(Monster o){
-	return position - o.position;
-}
-//display
-
-public String toString(){
-return "Name : " + name + "\n" +
-"Description : " + description + "\n" + 
-"Role : "	+ role + "\n" +
-"OriginalRole : " + originalRole + "\n" + 
-"Energy : " + energy + "\n" + 
-"Position : " + position + "\n" + 
-"isFreezing : " + frozen + "\n" +
-"isShielded : " + shielded + "\n" + 
-"ConfusionTurns : " + confusionTurns;
-}	
 	
+	public Role getRole() {
+		return role;
+	}
 	
-}
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
+	public Role getOriginalRole() {
+		return originalRole;
+	}
+
+	public int getEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(int energy) {
+		this.energy = Math.max(Constants.MIN_ENERGY, energy);
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position % Constants.BOARD_SIZE;
+	}
+	
+	public boolean isFrozen() {
+		return frozen;
+	}
+	
+	public void setFrozen(boolean frozen) {
+		this.frozen = frozen;
+	}
+	
+	public boolean isShielded() {
+		return shielded;
+	}
+	
+	public void setShielded(boolean shielded) {
+		this.shielded = shielded;
+	}
+	
+	public int getConfusionTurns() {
+		return confusionTurns;
+	}
+	
+	public void setConfusionTurns(int confusionTurns) {
+		this.confusionTurns = confusionTurns;
+	}
+
+	@Override
+	public int compareTo(Monster other) {
+		return this.position - other.position;
+	}
+
+}
