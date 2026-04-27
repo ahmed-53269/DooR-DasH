@@ -21,23 +21,16 @@ public class EnergyStealCard extends Card implements CanisterModifier {
 	}  
 	public void performAction(Monster player, Monster opponent)
 	{
-		if (!opponent.isShielded()) // not shielded => the energy steal effect is applied
-		{
+		if (!opponent.isShielded()){
 			int energyStolen = 0;
-			if (this.energy > opponent.getEnergy())
-			{
+			if (this.energy > opponent.getEnergy()){
 				energyStolen = opponent.getEnergy();
-			}
-			else
-			{
+		}else{
 				energyStolen = this.energy;
-			}
-			modifyCanisterEnergy(opponent, -1*energyStolen);
-	        modifyCanisterEnergy(player, energyStolen);
 		}
-		// if shielded the effect would not be applied in the first place, but remove the effect
-		else
-		{
+		modifyCanisterEnergy(opponent, -1*energyStolen);
+	    modifyCanisterEnergy(player, energyStolen);
+		}else{
 			opponent.setShielded(false);
 		}
 	}
