@@ -24,3 +24,4 @@ public class ContaminationSock extends TransportCell implements CanisterModifier
 		this.modifyCanisterEnergy(landingMonster, -Constants.SLIP_PENALTY);
 	}
 }
+
