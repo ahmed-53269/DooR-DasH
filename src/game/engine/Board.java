@@ -286,6 +286,11 @@ public class Board {
 			cell.setMonster(monster);
 		}
 		
+		Cell cell = getCell(player.getPosition());
+		cell.setMonster(player);
+		cell = getCell(opponent.getPosition());
+		cell.setMonster(opponent);
+		
 		
 		
 	}

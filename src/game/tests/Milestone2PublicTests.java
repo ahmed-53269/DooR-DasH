@@ -27,8 +27,6 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import game.engine.monsters.Monster;
-
 
 public class Milestone2PublicTests {
 
@@ -657,12 +655,9 @@ public class Milestone2PublicTests {
 			Object opponent = getOpponent.invoke(gameObject);
 			
 			ArrayList<Object> stationed = (ArrayList<Object>) getAllMonsters.invoke(gameObject);
-			System.out.println("expected player: "+ ((Monster)player).getName());
-			System.out.println("expected player: "+ ((Monster)opponent).getName());
+
 			assertFalse("Player should not be among stationed monsters", stationed.contains(player));
-			
 			assertFalse("Opponent should not be among stationed monsters", stationed.contains(opponent));
-			
 		} catch (Exception e) {
 			fail("Unexpected exception in testGameConstructorRemovesPlayerAndOpponentFromStationedMonsters: "
 					+ e.getMessage());

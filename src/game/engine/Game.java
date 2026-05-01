@@ -25,7 +25,7 @@ public class Game {
 		this.player = selectRandomMonsterByRole(playerRole);
 		this.opponent = selectRandomMonsterByRole(playerRole == Role.SCARER ? Role.LAUGHER : Role.SCARER);
 		this.current = player;
-		
+		board.initializeBoard(DataLoader.readCells());
 		ArrayList<Monster> tempArrayList = new ArrayList<Monster>();	
 		for(int i = 0; i<allMonsters.size(); i++) {
 			
@@ -39,12 +39,12 @@ public class Game {
 		
 		
 		
-		
+		/*
 		System.out.println(player.getName() + " player name");
 		System.out.println(opponent.getName() + " opponent name");
 		for(Monster monster: allMonsters)
 			System.out.println(monster.getName());
-
+		 */
 		Board.setStationedMonsters(allMonsters);
 	}
 	
